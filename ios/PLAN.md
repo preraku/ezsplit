@@ -8,11 +8,11 @@ Native iOS app that is a full-featured port of the EZSplit React web app.
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| UI Framework | SwiftUI | Mirrors React's declarative model; ideal for iOS 17+ |
-| Min OS | iOS 17+ | Unlocks `@Observable` macro, `NavigationStack`, and modern SwiftUI APIs |
+| UI Framework | SwiftUI | Mirrors React's declarative model; fully declarative on iOS 26 |
+| Min OS | iOS 26+ | Latest design language (Liquid Glass), newest SwiftUI APIs, zero legacy conditionals |
 | Location | `ios/` subfolder of this monorepo | Keeps web and iOS logic references in sync |
 | Extras | Haptic feedback | Subtle tactile reinforcement for user actions |
-| State management | `@Observable` class (`AppStore`) | iOS 17 equivalent of React Context + useReducer |
+| State management | `@Observable` class (`AppStore`) | Clean `@Observable` with no back-compat workarounds |
 
 ---
 
