@@ -9,6 +9,7 @@ export function ItemForm() {
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [qty, setQty] = useState(1);
+  const [taxExempt, setTaxExempt] = useState(false);
 
   function handleAdd() {
     const trimmed = name.trim();
@@ -20,11 +21,13 @@ export function ItemForm() {
         name: trimmed,
         pricePerUnit: Math.round(price * 100) / 100,
         quantity: qty,
+        taxExempt,
       },
     });
     setName('');
     setPrice(0);
     setQty(1);
+    setTaxExempt(false);
   }
 
   const canAdd = name.trim().length > 0 && price > 0;
@@ -58,6 +61,16 @@ export function ItemForm() {
           <QuantitySelector value={qty} min={1} onChange={setQty} />
         </div>
       </div>
+
+      <label className="flex items-center gap-2 cursor-pointer select-none">
+        <input
+          type="checkbox"
+          checked={taxExempt}
+          onChange={() => setTaxExempt(!taxExempt)}
+          className="w-4 h-4 rounded accent-blue-500"
+        />
+        <span className="text-sm text-gray-600 dark:text-gray-400">Tax exempt</span>
+      </label>
 
       <button
         type="button"

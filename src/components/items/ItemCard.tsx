@@ -15,11 +15,13 @@ export function ItemCard({ item }: Props) {
   const [name, setName] = useState(item.name);
   const [price, setPrice] = useState(item.pricePerUnit);
   const [qty, setQty] = useState(item.quantity);
+  const [taxExempt, setTaxExempt] = useState(item.taxExempt ?? false);
 
   function startEdit() {
     setName(item.name);
     setPrice(item.pricePerUnit);
     setQty(item.quantity);
+    setTaxExempt(item.taxExempt ?? false);
     setEditing(true);
   }
 
@@ -33,6 +35,7 @@ export function ItemCard({ item }: Props) {
         name: trimmed,
         pricePerUnit: Math.round(price * 100) / 100,
         quantity: qty,
+        taxExempt,
       },
     });
     setEditing(false);
@@ -69,6 +72,16 @@ export function ItemCard({ item }: Props) {
             <QuantitySelector value={qty} min={1} onChange={setQty} />
           </div>
         </div>
+        <label className="flex items-center gap-2 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={taxExempt}
+            onChange={() => setTaxExempt(!taxExempt)}
+            className="w-4 h-4 rounded accent-blue-500"
+          />
+          <span className="text-sm text-gray-600 dark:text-gray-400">Tax exempt</span>
+        </label>
+
         <div className="flex gap-2">
           <button
             type="button"
@@ -102,6 +115,9 @@ export function ItemCard({ item }: Props) {
           {formatCurrency(item.pricePerUnit)}
           {item.quantity > 1 && (
             <span> × {item.quantity} = {formatCurrency(item.pricePerUnit * item.quantity)}</span>
+          )}
+          {item.taxExempt && (
+            <span className="ml-2 text-xs font-medium text-green-600 dark:text-green-400">Tax exempt</span>
           )}
         </p>
       </div>
