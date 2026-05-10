@@ -9,22 +9,28 @@ export function calculateResults(
 ): { results: PersonResult[]; unassignedSubtotal: number; unassignedTaxTip: number } {
   // Step 1: Calculate each person's share per item
   const personSubtotals: Record<string, number> = {};
+  const personTaxableSubtotals: Record<string, number> = {};
   const personItemLines: Record<string, { itemName: string; share: number }[]> = {};
 
   for (const p of people) {
     personSubtotals[p.id] = 0;
+    personTaxableSubtotals[p.id] = 0;
     personItemLines[p.id] = [];
   }
 
   let totalAssignedSubtotal = 0;
   let unassignedSubtotal = 0;
+  let taxableAssignedSubtotal = 0;
+  let unassignedTaxableSubtotal = 0;
 
   for (const item of items) {
     const assignment = assignments[item.id];
     const itemTotal = item.pricePerUnit * item.quantity;
+    const isTaxable = !item.taxExempt;
 
     if (!assignment) {
       unassignedSubtotal += itemTotal;
+      if (isTaxable) unassignedTaxableSubtotal += itemTotal;
       continue;
     }
 
@@ -35,17 +41,20 @@ export function calculateResults(
       );
       if (shared.length === 0) {
         unassignedSubtotal += itemTotal;
+        if (isTaxable) unassignedTaxableSubtotal += itemTotal;
         continue;
       }
       const share = itemTotal / shared.length;
       for (const pid of shared) {
         personSubtotals[pid] = (personSubtotals[pid] ?? 0) + share;
+        if (isTaxable) personTaxableSubtotals[pid] = (personTaxableSubtotals[pid] ?? 0) + share;
         personItemLines[pid] = [
           ...(personItemLines[pid] ?? []),
           { itemName: item.name, share },
         ];
       }
       totalAssignedSubtotal += itemTotal;
+      if (isTaxable) taxableAssignedSubtotal += itemTotal;
     } else {
       // qty > 1: use quantities map
       const qtys = assignment.quantities;
@@ -56,6 +65,7 @@ export function calculateResults(
         assignedQty += qty;
         const share = qty * item.pricePerUnit;
         personSubtotals[pid] = (personSubtotals[pid] ?? 0) + share;
+        if (isTaxable) personTaxableSubtotals[pid] = (personTaxableSubtotals[pid] ?? 0) + share;
         if (qty > 0) {
           personItemLines[pid] = [
             ...(personItemLines[pid] ?? []),
@@ -65,16 +75,24 @@ export function calculateResults(
       }
       const assigned = assignedQty * item.pricePerUnit;
       totalAssignedSubtotal += assigned;
+      if (isTaxable) taxableAssignedSubtotal += assigned;
       const unassigned = (item.quantity - assignedQty) * item.pricePerUnit;
-      if (unassigned > 0) unassignedSubtotal += unassigned;
+      if (unassigned > 0) {
+        unassignedSubtotal += unassigned;
+        if (isTaxable) unassignedTaxableSubtotal += unassigned;
+      }
     }
   }
 
-  // Step 2: Prorate tax and tip — only the assigned fraction
+  // Step 2: Prorate tax over taxable items only; tip over all items
+  const totalBillTaxableSubtotal = taxableAssignedSubtotal + unassignedTaxableSubtotal;
+  const taxAssignedFraction = totalBillTaxableSubtotal > 0 ? taxableAssignedSubtotal / totalBillTaxableSubtotal : 0;
+
   const totalBillSubtotal = totalAssignedSubtotal + unassignedSubtotal;
-  const assignedFraction = totalBillSubtotal > 0 ? totalAssignedSubtotal / totalBillSubtotal : 0;
-  const assignedTax = taxTotal * assignedFraction;
-  const assignedTip = tipTotal * assignedFraction;
+  const tipAssignedFraction = totalBillSubtotal > 0 ? totalAssignedSubtotal / totalBillSubtotal : 0;
+
+  const assignedTax = taxTotal * taxAssignedFraction;
+  const assignedTip = tipTotal * tipAssignedFraction;
   const assignedTaxTip = assignedTax + assignedTip;
   const results: PersonResult[] = [];
 
@@ -88,14 +106,22 @@ export function calculateResults(
 
   for (const p of people) {
     const subtotal = personSubtotals[p.id] ?? 0;
-    const fraction = splitEqually
+    const taxableSubtotal = personTaxableSubtotals[p.id] ?? 0;
+
+    const tipFraction = splitEqually
       ? equalShare
       : totalAssignedSubtotal > 0
       ? subtotal / totalAssignedSubtotal
       : 0;
 
-    const taxShare = Math.round(assignedTax * fraction * 100) / 100;
-    const tipShare = Math.round(assignedTip * fraction * 100) / 100;
+    const taxFraction = splitEqually
+      ? equalShare
+      : taxableAssignedSubtotal > 0
+      ? taxableSubtotal / taxableAssignedSubtotal
+      : 0;
+
+    const taxShare = Math.round(assignedTax * taxFraction * 100) / 100;
+    const tipShare = Math.round(assignedTip * tipFraction * 100) / 100;
     taxTipSum += taxShare + tipShare;
 
     if (subtotal > maxSubtotal) {

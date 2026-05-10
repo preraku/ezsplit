@@ -9,6 +9,7 @@ export interface LineItem {
   name: string;
   pricePerUnit: number;
   quantity: number;
+  taxExempt?: boolean;
 }
 
 export interface ItemAssignment {
