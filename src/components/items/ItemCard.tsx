@@ -85,6 +85,14 @@ export function ItemCard({ item }: Props) {
         <div className="flex gap-2">
           <button
             type="button"
+            onClick={cancel}
+            className="flex-1 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold
+              active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
             onClick={save}
             disabled={!name.trim() || price <= 0}
             className={`flex-1 py-2 rounded-lg font-semibold transition-colors
@@ -93,14 +101,6 @@ export function ItemCard({ item }: Props) {
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'}`}
           >
             Save
-          </button>
-          <button
-            type="button"
-            onClick={cancel}
-            className="flex-1 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold
-              active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
-          >
-            Cancel
           </button>
         </div>
       </div>
