@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 interface Props {
   value: number;
   onChange: (value: number) => void;
@@ -7,15 +9,46 @@ interface Props {
 }
 
 export function CurrencyInput({ value, onChange, placeholder = '0.00', label, id }: Props) {
-  // value is stored as dollars (e.g. 2.5 means $2.50)
-  // We track cents internally for the integer-entry UX
-  const cents = Math.round(value * 100);
-  const displayValue = cents === 0 ? '' : (cents / 100).toFixed(2);
+  const [raw, setRaw] = useState(value === 0 ? '' : value.toFixed(2));
+  const [focused, setFocused] = useState(false);
+
+  // Only sync external value changes when the input isn't focused
+  useEffect(() => {
+    if (!focused) {
+      setRaw(value === 0 ? '' : value.toFixed(2));
+    }
+  }, [value, focused]);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const digits = e.target.value.replace(/[^0-9]/g, '');
-    const newCents = parseInt(digits, 10);
-    onChange(isNaN(newCents) ? 0 : newCents / 100);
+    let input = e.target.value;
+
+    // Allow only digits and a single decimal point
+    input = input.replace(/[^0-9.]/g, '');
+    const parts = input.split('.');
+    if (parts.length > 2) input = parts[0] + '.' + parts.slice(1).join('');
+
+    // Limit to 2 decimal places
+    if (parts.length === 2 && parts[1].length > 2) {
+      input = parts[0] + '.' + parts[1].slice(0, 2);
+    }
+
+    setRaw(input);
+    const parsed = parseFloat(input);
+    onChange(isNaN(parsed) ? 0 : parsed);
+  }
+
+  function handleBlur() {
+    setFocused(false);
+    if (raw === '' || raw === '.') {
+      setRaw('');
+      onChange(0);
+    } else {
+      const parsed = parseFloat(raw);
+      if (!isNaN(parsed)) {
+        setRaw(parsed.toFixed(2));
+        onChange(parsed);
+      }
+    }
   }
 
   return (
@@ -30,9 +63,11 @@ export function CurrencyInput({ value, onChange, placeholder = '0.00', label, id
         <input
           id={id}
           type="text"
-          inputMode="numeric"
-          value={displayValue}
+          inputMode="decimal"
+          value={raw}
           onChange={handleChange}
+          onFocus={() => setFocused(true)}
+          onBlur={handleBlur}
           placeholder={placeholder}
           className="w-full pl-7 pr-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100
             focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
