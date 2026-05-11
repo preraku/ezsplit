@@ -29,7 +29,7 @@ export function PersonResult({ result, showTax, showTip }: Props) {
           <p className="font-bold text-gray-900 dark:text-gray-100">{person.name}</p>
         </div>
         <div className="text-right">
-          <p className="text-xl font-bold" style={{ color: person.color }}>
+          <p className="text-xl font-bold font-mono tabular-nums" style={{ color: person.color }}>
             {formatCurrency(total)}
           </p>
         </div>

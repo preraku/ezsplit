@@ -112,9 +112,9 @@ export function ItemCard({ item }: Props) {
       <div className="flex-1 min-w-0 cursor-pointer" onClick={startEdit}>
         <p className="font-semibold text-gray-900 dark:text-gray-100 truncate">{item.name}</p>
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          {formatCurrency(item.pricePerUnit)}
+          <span className="font-mono tabular-nums">{formatCurrency(item.pricePerUnit)}</span>
           {item.quantity > 1 && (
-            <span> × {item.quantity} = {formatCurrency(item.pricePerUnit * item.quantity)}</span>
+            <span> × {item.quantity} = <span className="font-mono tabular-nums">{formatCurrency(item.pricePerUnit * item.quantity)}</span></span>
           )}
           {item.taxExempt && (
             <span className="ml-2 text-xs font-medium text-green-600 dark:text-green-400">Tax exempt</span>

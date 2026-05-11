@@ -20,7 +20,7 @@ export function AssignItemCard({ item, people, assignment }: Props) {
       <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
         <div className="flex-1 min-w-0">
           <p className="font-semibold text-gray-900 dark:text-gray-100 truncate">{item.name}</p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-500 dark:text-gray-400 font-mono tabular-nums">
             {formatCurrency(item.pricePerUnit)}
             {item.quantity > 1 && ` × ${item.quantity}`}
           </p>

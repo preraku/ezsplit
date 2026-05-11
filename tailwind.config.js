@@ -10,6 +10,9 @@ export default {
       spacing: {
         'safe-bottom': 'env(safe-area-inset-bottom)',
       },
+      fontFamily: {
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+      },
     },
   },
   plugins: [],

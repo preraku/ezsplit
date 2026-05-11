@@ -22,7 +22,7 @@ export function ShareLine({ label, amount, dimmed, bold, borderTop }: Props) {
         {label}
       </span>
       <span
-        className={`text-sm tabular-nums ${bold ? 'font-bold text-gray-900 dark:text-gray-100' : dimmed ? 'text-gray-400 dark:text-gray-500' : 'text-gray-700 dark:text-gray-300'}`}
+        className={`text-sm font-mono tabular-nums ${bold ? 'font-bold text-gray-900 dark:text-gray-100' : dimmed ? 'text-gray-400 dark:text-gray-500' : 'text-gray-700 dark:text-gray-300'}`}
       >
         {formatCurrency(amount)}
       </span>

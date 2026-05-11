@@ -50,7 +50,7 @@ export function PerPersonQtyRow({ item, people, assignment }: Props) {
               <PersonCircle person={p} size="sm" />
               <span className="flex-1 text-sm text-gray-800 dark:text-gray-200 truncate">{p.name}</span>
               {personQty > 0 && (
-                <span className="text-xs text-gray-500 dark:text-gray-400 tabular-nums">
+                <span className="text-xs font-mono tabular-nums text-gray-500 dark:text-gray-400">
                   {formatCurrency(personShare)}
                 </span>
               )}

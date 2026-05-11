@@ -29,12 +29,12 @@ export function ResultsStep() {
         {/* Summary banner */}
         <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-xl p-4 text-center">
           <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">Total Bill</p>
-          <p className="text-3xl font-bold text-blue-700 dark:text-blue-300 tabular-nums">
+          <p className="text-3xl font-bold font-mono tabular-nums text-blue-700 dark:text-blue-300">
             {formatCurrency(billTotal)}
           </p>
           {unassignedSubtotal > 0 && (
             <p className="text-xs text-blue-500 dark:text-blue-400 mt-1">
-              Assigned: {formatCurrency(assignedTotal)}
+              Assigned: <span className="font-mono tabular-nums">{formatCurrency(assignedTotal)}</span>
             </p>
           )}
         </div>

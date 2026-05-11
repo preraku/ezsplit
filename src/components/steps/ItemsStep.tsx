@@ -38,23 +38,23 @@ export function ItemsStep() {
           <div className="bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 space-y-1">
             <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
               <span>Subtotal</span>
-              <span className="tabular-nums">{formatCurrency(subtotal)}</span>
+              <span className="font-mono tabular-nums">{formatCurrency(subtotal)}</span>
             </div>
             {taxTotal > 0 && (
               <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
                 <span>Tax</span>
-                <span className="tabular-nums">{formatCurrency(taxTotal)}</span>
+                <span className="font-mono tabular-nums">{formatCurrency(taxTotal)}</span>
               </div>
             )}
             {tipTotal > 0 && (
               <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
                 <span>Tip</span>
-                <span className="tabular-nums">{formatCurrency(tipTotal)}</span>
+                <span className="font-mono tabular-nums">{formatCurrency(tipTotal)}</span>
               </div>
             )}
-            <div className="flex justify-between text-base font-bold text-gray-900 dark:text-gray-100 pt-1 border-t border-gray-200 dark:border-gray-600">
+            <div className="flex justify-between text-sm font-bold text-gray-900 dark:text-gray-100 pt-1 border-t border-gray-200 dark:border-gray-600">
               <span>Total</span>
-              <span className="tabular-nums">{formatCurrency(grandTotal)}</span>
+              <span className="font-mono tabular-nums">{formatCurrency(grandTotal)}</span>
             </div>
           </div>
         )}
