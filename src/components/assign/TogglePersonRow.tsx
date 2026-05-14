@@ -44,14 +44,14 @@ export function TogglePersonRow({ itemId, people, assignment }: Props) {
         <button
           type="button"
           onClick={setAll}
-          className={`px-3 py-1 rounded-full text-xs font-semibold ${isAll ? activeClass : inactiveClass} active:bg-blue-200 dark:active:bg-blue-800`}
+          className={`px-3 py-1 text-xs font-semibold ${isAll ? activeClass : inactiveClass} active:bg-blue-200 dark:active:bg-blue-800`}
         >
           All
         </button>
         <button
           type="button"
           onClick={setNone}
-          className={`px-3 py-1 rounded-full text-xs font-semibold ${isNone ? activeClass : inactiveClass} active:bg-blue-200 dark:active:bg-blue-800`}
+          className={`px-3 py-1 text-xs font-semibold ${isNone ? activeClass : inactiveClass} active:bg-blue-200 dark:active:bg-blue-800`}
         >
           None
         </button>

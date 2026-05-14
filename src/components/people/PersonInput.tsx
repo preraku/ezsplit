@@ -34,7 +34,7 @@ export function PersonInput() {
         onKeyDown={handleKeyDown}
         placeholder="Enter a name…"
         maxLength={24}
-        className="flex-1 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100
+        className="flex-1 px-3 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
           bg-white dark:bg-gray-800 text-base"
       />
@@ -43,7 +43,7 @@ export function PersonInput() {
         onClick={handleAdd}
         disabled={!name.trim()}
         className={`
-          px-4 py-2.5 rounded-lg font-semibold transition-colors
+          px-4 py-2.5 font-semibold transition-colors
           ${name.trim()
             ? 'bg-blue-500 text-white active:bg-blue-600'
             : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'}

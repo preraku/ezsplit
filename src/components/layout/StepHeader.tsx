@@ -29,7 +29,7 @@ export function StepHeader({ currentStep }: Props) {
           <div key={step.key} className="flex items-center gap-2">
             <div
               className={`
-                h-2 rounded-full transition-all duration-300
+                h-2 transition-all duration-300
                 ${idx === currentIdx
                   ? 'bg-blue-500 w-8'
                   : idx < currentIdx

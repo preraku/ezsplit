@@ -15,7 +15,7 @@ export function AssignItemCard({ item, people, assignment }: Props) {
   const assignedQty = getAssignedQty(assignment, item.quantity);
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
         <div className="flex-1 min-w-0">

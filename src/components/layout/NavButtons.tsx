@@ -41,7 +41,7 @@ export function NavButtons({ canProceed, errorMessage, onNext, isLastStep }: Pro
             <button
               type="button"
               onClick={handleBack}
-              className="flex-1 py-3 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold
+              className="flex-1 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold
                 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
             >
               ← Back
@@ -51,7 +51,7 @@ export function NavButtons({ canProceed, errorMessage, onNext, isLastStep }: Pro
             <button
               type="button"
               onClick={handleReset}
-              className="flex-1 py-3 rounded-xl bg-gray-800 text-white font-semibold
+              className="flex-1 py-3 bg-gray-800 text-white font-semibold
                 active:bg-gray-900 transition-colors"
             >
               Start Over
@@ -62,7 +62,7 @@ export function NavButtons({ canProceed, errorMessage, onNext, isLastStep }: Pro
               onClick={handleNext}
               disabled={!canProceed}
               className={`
-                flex-1 py-3 rounded-xl font-semibold transition-colors
+                flex-1 py-3 font-semibold transition-colors
                 ${canProceed
                   ? 'bg-blue-500 text-white active:bg-blue-600'
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'}

@@ -33,7 +33,7 @@ export function ItemForm() {
   const canAdd = name.trim().length > 0 && price > 0;
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-4 space-y-3">
+    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-4 space-y-3">
       <h3 className="font-semibold text-gray-700 dark:text-gray-300 text-sm">Add Item</h3>
 
       <input
@@ -42,7 +42,7 @@ export function ItemForm() {
         onChange={(e) => setName(e.target.value)}
         placeholder="Item name…"
         maxLength={40}
-        className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100
+        className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
           bg-white dark:bg-gray-800 text-base"
       />
@@ -77,7 +77,7 @@ export function ItemForm() {
         onClick={handleAdd}
         disabled={!canAdd}
         className={`
-          w-full py-2.5 rounded-lg font-semibold transition-colors
+          w-full py-2.5 font-semibold transition-colors
           ${canAdd
             ? 'bg-blue-500 text-white active:bg-blue-600'
             : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'}

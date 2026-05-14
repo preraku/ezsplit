@@ -47,13 +47,13 @@ export function ItemCard({ item }: Props) {
 
   if (editing) {
     return (
-      <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-blue-300 dark:border-blue-600 p-4 space-y-3">
+      <div className="bg-white dark:bg-gray-900 border-2 border-blue-300 dark:border-blue-600 p-4 space-y-3">
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           maxLength={40}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100
             focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
             bg-white dark:bg-gray-800 text-base"
           autoFocus
@@ -86,7 +86,7 @@ export function ItemCard({ item }: Props) {
           <button
             type="button"
             onClick={cancel}
-            className="flex-1 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold
+            className="flex-1 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold
               active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
           >
             Cancel
@@ -95,7 +95,7 @@ export function ItemCard({ item }: Props) {
             type="button"
             onClick={save}
             disabled={!name.trim() || price <= 0}
-            className={`flex-1 py-2 rounded-lg font-semibold transition-colors
+            className={`flex-1 py-2 font-semibold transition-colors
               ${name.trim() && price > 0
                 ? 'bg-blue-500 text-white active:bg-blue-600'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'}`}
@@ -108,7 +108,7 @@ export function ItemCard({ item }: Props) {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-4 flex items-center justify-between">
+    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-4 flex items-center justify-between">
       <div className="flex-1 min-w-0 cursor-pointer" onClick={startEdit}>
         <p className="font-semibold text-gray-900 dark:text-gray-100 truncate">{item.name}</p>
         <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -125,7 +125,7 @@ export function ItemCard({ item }: Props) {
         <button
           type="button"
           onClick={startEdit}
-          className="w-8 h-8 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-full flex items-center justify-center
+          className="w-8 h-8 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 flex items-center justify-center
             text-sm active:bg-gray-200 dark:active:bg-gray-700 transition-colors"
           aria-label={`Edit ${item.name}`}
         >
@@ -134,7 +134,7 @@ export function ItemCard({ item }: Props) {
         <button
           type="button"
           onClick={() => dispatch({ type: 'REMOVE_ITEM', payload: { id: item.id } })}
-          className="w-8 h-8 bg-red-100 dark:bg-red-900 text-red-500 dark:text-red-400 rounded-full flex items-center justify-center
+          className="w-8 h-8 bg-red-100 dark:bg-red-900 text-red-500 dark:text-red-400 flex items-center justify-center
             font-bold text-lg active:bg-red-200 dark:active:bg-red-800 transition-colors"
           aria-label={`Remove ${item.name}`}
         >

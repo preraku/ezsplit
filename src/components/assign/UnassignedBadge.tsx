@@ -12,7 +12,7 @@ export function UnassignedBadge({ assignedQty, totalQty }: Props) {
   return (
     <span
       className={`
-        inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold
+        inline-flex items-center px-2 py-0.5 text-xs font-semibold
         ${isNone ? 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300' : 'bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300'}
       `}
     >

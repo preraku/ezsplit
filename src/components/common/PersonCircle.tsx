@@ -19,7 +19,7 @@ export function PersonCircle({ person, selected, onToggle, size = 'md', showName
   const circle = (
     <div
       className={`
-        ${sizeClasses[size]} rounded-full flex items-center justify-center font-bold text-white
+        ${sizeClasses[size]} flex items-center justify-center font-bold text-white
         transition-all duration-150 select-none
         ${onToggle ? 'cursor-pointer' : ''}
         ${selected === false ? 'opacity-30' : ''}

@@ -22,7 +22,7 @@ export function PersonList() {
             <button
               type="button"
               onClick={() => dispatch({ type: 'REMOVE_PERSON', payload: { id: person.id } })}
-              className="absolute -top-1 -right-1 w-5 h-5 bg-gray-700 text-white rounded-full
+              className="absolute -top-1 -right-1 w-5 h-5 bg-gray-700 text-white
                 flex items-center justify-center text-xs font-bold leading-none
                 active:bg-gray-900 transition-colors"
               aria-label={`Remove ${person.name}`}

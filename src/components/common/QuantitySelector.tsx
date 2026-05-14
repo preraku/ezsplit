@@ -18,7 +18,7 @@ export function QuantitySelector({ value, min = 0, max, onChange, label }: Props
         onClick={() => canDecrement && onChange(value - 1)}
         disabled={!canDecrement}
         className={`
-          w-9 h-9 rounded-full flex items-center justify-center text-lg font-bold
+          w-9 h-9 flex items-center justify-center text-lg font-bold
           transition-colors duration-150
           ${canDecrement
             ? 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 active:bg-gray-300 dark:active:bg-gray-600'
@@ -36,7 +36,7 @@ export function QuantitySelector({ value, min = 0, max, onChange, label }: Props
         onClick={() => canIncrement && onChange(value + 1)}
         disabled={!canIncrement}
         className={`
-          w-9 h-9 rounded-full flex items-center justify-center text-lg font-bold
+          w-9 h-9 flex items-center justify-center text-lg font-bold
           transition-colors duration-150
           ${canIncrement
             ? 'bg-blue-500 text-white active:bg-blue-600'

@@ -35,7 +35,7 @@ export function ItemsStep() {
         <TaxTipForm />
 
         {items.length > 0 && (
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 space-y-1">
+          <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-4 space-y-1">
             <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
               <span>Subtotal</span>
               <span className="font-mono tabular-nums">{formatCurrency(subtotal)}</span>

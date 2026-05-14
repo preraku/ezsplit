@@ -13,14 +13,14 @@ export function PersonResult({ result, showTax, showTip }: Props) {
   const { person, itemLines, subtotal, taxShare, tipShare, total } = result;
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Person header */}
       <div
         className="px-4 py-3 flex items-center gap-3"
         style={{ backgroundColor: person.color + '18' }}
       >
         <div
-          className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm flex-shrink-0"
+          className="w-10 h-10 flex items-center justify-center font-bold text-white text-sm flex-shrink-0"
           style={{ backgroundColor: person.color }}
         >
           {getInitials(person.name)}

@@ -28,7 +28,7 @@ export function PerPersonQtyRow({ item, people, assignment }: Props) {
     <div className="space-y-2">
       <div
         className={`
-          text-xs font-semibold px-2 py-1 rounded-full inline-flex
+          text-xs font-semibold px-2 py-1 inline-flex
           ${remaining === 0
             ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300'
             : remaining > 0

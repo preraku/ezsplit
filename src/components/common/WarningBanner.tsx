@@ -17,7 +17,7 @@ export function WarningBanner({ message, type = 'warning' }: Props) {
   };
 
   return (
-    <div className={`border rounded-lg px-4 py-3 text-sm flex items-start gap-2 ${classes[type]}`}>
+    <div className={`border px-4 py-3 text-sm flex items-start gap-2 ${classes[type]}`}>
       <span className="flex-shrink-0">{icons[type]}</span>
       <span>{message}</span>
     </div>
